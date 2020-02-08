@@ -1,50 +1,49 @@
-let starWarsCharacters
+let starWarsCharacter
 
 
-const container = document.createElement('div')
+// const container = document.createElement('div')
 
-const dataSection = document.querySelector('')
+// const dataSection = document.querySelector('')
 
-const dataSection = data.querySelector('#starWarsCharacters')
+const dataSection = document.querySelector('#starWarsCharacter')
 
 fetch('https://swapi.co/api/people/1/')
     .then(response => response.json())
     .then(function(data) {
-        starWarsCharacters = data
-        rednerH2()
-        return data.repos_url
-    })
-    .then(function(url) {
-        return fetch(url)
-    })
-    .then(response => response.json())
-    .then(function(data) {
-        console.log(data)
-        const repoList = document.createElement('ul')
-        dataSection.appendChild(repoList)
-        repoList.classList.add(
-            //List of items that need to come up for Skywalker on page.
-            'Name',
-            'Height',
-            'Mass',
-            'Hair-color',
-            'Skin-color',
-            'Eye-color',
-            'Birth-year',
-            'Gender'
-
-        )
-        for (const repo of data) {
-            const listItem = document.createElement('li')
-            listItem.innerText = repo.name
-            listItem.classList.add('Name', 'Height', 'Mass', 'Hair-color', 'Skin-color', 'Eye-color', 'Birth-year', 'Gender')
-            repoList.appendChild(listItem)
-
+        starWarsCharacter = data
+        console.log(starWarsCharacter)
+        renderImage()
+        renderH2()
+    }).then (function (){
+        let characteristicsList =  document.createElement('ul')
+        for (let characteristic of ['height', 'mass', 'hair_color', 'skin_color', 'eye_color', 'birth_year', 'gender']){
+            let listItem = makeListItem(characteristic)
+            characteristicsList.append(listItem)
         }
+        // we looked at what could be generalized and made it into one function called makeListItem
+        // let heightItem = document.createElement('li')
+        // let massItem = document.createElement('li')
+        // heightItem.innerText = "Height: " + data.height
+        // massItem.innerText = "Mass: " + data.mass
+        // characteristicsList.append(heightItem)
+        // characteristicsList.append(massItem)
+        dataSection.append(characteristicsList)
     })
+
+function makeListItem(characteristic){
+    let listItem = document.createElement('li')
+    listItem.innerText = characteristic + ": " + starWarsCharacter[characteristic]
+    listItem.classList.add("f5", "fw4", "gray", "mt0")
+    return listItem
+}
 
 function renderH2() {
-    const h2EL = document.createElement('h2')
-    h2El.innerTex = githubData.name
+    const h2El = document.createElement('h2')
+    h2El.innerText = starWarsCharacter.name
+    h2El.classList.add("f3", "mb2")
     dataSection.appendChild(h2El)
+}
+
+function renderImage() {
+
 }
