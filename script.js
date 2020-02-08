@@ -4,12 +4,12 @@ const dataSection = data.querySelector('#starwars-data')
 
 fetch('https://swapi.co/api/people/1/')
     .then(response => response.json())
-    .then(function(data)) {
-        githubData = data
+    .then(function(data) {
+        starWarsCharacters = data
         rednerH2()
         return data.repos_url
     })
-.then(function(url) {
+    .then(function(url) {
         return fetch(url)
     })
     .then(response => response.json())
@@ -19,21 +19,20 @@ fetch('https://swapi.co/api/people/1/')
         dataSection.appendChild(repoList)
         repoList.classList.add(
             //List of items that need to come up for Skywalker on page.
-            'list',
-            'pl0',
-            'ml0',
-            'center',
-            'mw6',
-            'ba',
-            'b--light-silver',
-            'br3'
-
+            'Name',
+            'Height',
+            'Mass',
+            'Hair-color',
+            'Skin-color',
+            'Eye-color',
+            'Birth-year',
+            'Gender'
 
         )
         for (const repo of data) {
             const listItem = document.createElement('li')
             listItem.innerText = repo.name
-            listItem.classList.add('ph3', 'pv2', 'bb', 'b--light-silver')
+            listItem.classList.add('Name', 'Height', 'Mass', 'Hair-color', 'Skin-color', 'Eye-color', 'Birth-year', 'Gender')
             repoList.appendChild(listItem)
 
         }
