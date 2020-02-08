@@ -1,5 +1,10 @@
 let starWarsCharacters
 
+
+const container = document.createElement('div')
+
+const dataSection = document.querySelector('')
+
 const dataSection = data.querySelector('#starWarsCharacters')
 
 fetch('https://swapi.co/api/people/1/')
