@@ -1,6 +1,6 @@
 let starWarsCharacters
 
-const dataSection = data.querySelector('#starwars-data')
+const dataSection = data.querySelector('#starWarsCharacters')
 
 fetch('https://swapi.co/api/people/1/')
     .then(response => response.json())
